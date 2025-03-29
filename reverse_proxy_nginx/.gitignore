@@ -1,0 +1,4 @@
+env/.env
+logs/
+scheduler/curl_app.log
+scheduler/run_task.bat

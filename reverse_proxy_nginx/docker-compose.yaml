@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  reverse-proxy:
+    image: nginx:latest
+    container_name: nginx-reverse-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./reverse-proxy/default.conf:/etc/nginx/conf.d/default.conf
+
+  app1:
+    image: nginx:latest
+    container_name: nginx-app1
+    hostname: nginx-app1 
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - ./app-nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app-nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs:/var/log/nginx
+
+  app2:
+    image: nginx:latest
+    container_name: nginx-app2
+    hostname: nginx-app2
+    volumes:
+      - ./app:/usr/share/nginx/html
+      - ./app-nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./app-nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./logs:/var/log/nginx
