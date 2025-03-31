@@ -40,3 +40,28 @@ If the request fails, a Slack notification is automatically sent.
     ```bash
     scheduler\\curl_app.bat
     ```
+
+## Slack Notification Setup
+
+To receive notifications on Slack when a request fails, follow these steps:
+
+1. **Create an Incoming Webhook in Slack**
+
+    - Open your Slack workspace.
+    - Go to [Incoming Webhooks](https://api.slack.com/messaging/webhooks).
+    - Click **Create your own app**.
+    - Choose a name (e.g., "Reverse Proxy Notifier") and select the workspace.
+    - Go to **Incoming Webhooks** → **Activate Incoming Webhooks**.
+    - Click **Add New Webhook to Workspace** and choose a channel (e.g., `#alerts`).
+    - Copy the **Webhook URL** provided.
+
+2. **Update your `.env` file**
+
+    Save the following content in `env/.env`:
+
+    ```env
+    SLACK_WEBHOOK_URL=https://hooks.slack.com/services/XXX/YYY/ZZZ
+    SLACK_JSON_PATH=C:\\path\\to\\slack_payload.json
+    ```
+
+    Replace `https://hooks.slack.com/services/...` with your actual Webhook URL.
